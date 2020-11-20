@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar__wrapper">
     <ul class="navbar__link-list">
-      <li class="navbar__link">
+      <li class="navbar__item">
         <router-link to="/">Главная</router-link>
       </li>
-      <li class="navbar__link">
+      <li class="navbar__item">
         <router-link to="/history">История</router-link>
       </li>
     </ul> 
@@ -18,8 +18,17 @@
   opacity: 1;
   margin: 0;
 }
+
 .navbar__link-list {
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row nowrap;
+  list-style: none;
+}
+
+.navbar__item {
+  margin: 20px;
 }
 </style>
