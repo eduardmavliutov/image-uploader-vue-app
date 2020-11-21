@@ -1,30 +1,37 @@
 <template>
-  <section>
-    <h1>История</h1>
-    <Loader v-if="loading"/>
-    <div 
-      v-else
-      class="pictures-history__container"
-    >
-      <img 
-        v-for="image in images" :key="image.id + Date.now()"
-        v-bind:image="image"
-        :src="image.src" 
-        :alt="image.title"
+  <section class="section__wrapper border__wrapper">
+    <h1 class="section__title">История</h1>
+    <main class="section__main">
+      <Loader v-if="loading"/>
+      <div 
+        v-else
+        class="images-history__container"
       >
-    </div>
-    
+        <ImageCard 
+          v-for="image in images" 
+          v-bind:image="image"
+          v-bind:key="image.id + Math.random()"
+          
+          v-bind:src="image.src"
+          v-bind:title="image.title"
+          v-bind:id="image.id"
+          v-bind:timestamp="Date.now()"
+        />
+      </div>
+    </main>
   </section>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import Loader from '@/components/Loader';
+import ImageCard from '@/components/ImageCard';
 
 export default {
   name: 'History',
   components: {
-    Loader
+    Loader,
+    ImageCard
   },
   computed: mapGetters(['images', 'loading']),
   methods: mapActions(['fetchImages']),
@@ -33,3 +40,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.images-history__container {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+}
+</style>

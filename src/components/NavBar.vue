@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar__wrapper">
+  <nav class="navbar__wrapper border__wrapper">
     <ul class="navbar__link-list">
       <li class="navbar__item">
         <router-link to="/">Главная</router-link>
@@ -14,9 +14,10 @@
 <style scoped>
 .navbar__wrapper {
   background: #FFFFFF 0% 0% no-repeat padding-box;
-  border: 1px solid #707070;
   opacity: 1;
-  margin: 0;
+  margin-top: 29px;
+  margin-bottom: 40px;
+  padding: 0;
 }
 
 .navbar__link-list {
