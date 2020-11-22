@@ -40,24 +40,25 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   flex-flow: row nowrap;
-  padding-top: 79px;
+  padding: 79px 0px;
   margin-bottom: 29px;
-  position: relative;
   flex-grow: 1;
+  position: relative;
 }
 
 .section__title {
   align-self: flex-start;
   padding: 0;
   margin: 0 30px 0;
+  position: absolute;
 }
 
 .section__main {
   display: flex;
-  justify-content: flex-start;
-  flex-flow: row nowrap;
+  justify-content: center;
+  flex-flow: row wrap;
   align-items: flex-start;
   flex-grow: 2;
-  margin-right: 30px;
+  position: relative;
 }
 </style>

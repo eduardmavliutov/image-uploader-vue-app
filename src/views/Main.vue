@@ -2,7 +2,7 @@
 <section class="section__wrapper border__wrapper">
   <h1 class="section__title">Главная</h1>
   <main class="section__main">
-    <div class="image-upload">
+    <div class="image-upload__container">
       <img class="image-upload__preview">
       <UploadButton
         @upload="uploadImageHandler"
@@ -38,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.image-upload__container {
+  width: 50%;
+}
+
 .image-upload__preview {
   top: 212px;
   left: 255px;
@@ -48,6 +52,7 @@ export default {
   flex-grow: 2;
   display: block;
   width: 100%;
+  margin-bottom: 40px;
 }
 </style>
 

@@ -1,10 +1,9 @@
 export default {
   actions: {
     async fetchImages({commit, state}) {
-      if(state.images.length === 0) {
+      if(!state.initialLoadingCompleted) {
         const IMAGES_COUNT = 15;
         const queries = new Array(IMAGES_COUNT);
-        const images = [];
         commit('setLoading', true);
         for(let i = 0; i < queries.length; i++) {
           queries[i] = fetch(
@@ -19,17 +18,20 @@ export default {
               image.id = responseData.data.id;
               image.src = responseData.data.images.original.url;
               image.title = responseData.data.title.trim() ? responseData.data.title.trim() : 'random gif';
-              images.push(image);
+              commit('addImage', image);
             })
           })
           .then(() => {
-            commit('updateImages', images);
             commit('setLoading', false);
+            commit('setInitialLoadingCompleted');
           });
       }
     },
   },
   mutations: {
+    addImage(state, image) {
+      state.images.push(image)
+    },
     updateImages(state, images) {
       state.images = images;
     },
@@ -44,19 +46,26 @@ export default {
         title: 'New Image ' + Date.now()
       }
       state.images.unshift(image);
+    },
+    setInitialLoadingCompleted(state) {
+      state.initialLoadingCompleted = true;
     }
   },
   state: {
     images: [],
     loading: false,
-    file: ''
+    initialLoadingCompleted: false,
+    lastDownloadedImage: ''
   },
   getters: {
-    images(state){
+    images(state) {
       return state.images;
     },
     loading(state) {
       return state.loading;
+    },
+    lastDownloadedImage(state) {
+      return state.lastDownloadedImage;
     }
   }
 }
