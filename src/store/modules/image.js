@@ -15,7 +15,7 @@ export default {
             responses.forEach(async (response) => {  
               const responseData = await response.json();
               const image = {};
-              image.id = responseData.data.id;
+              image.id = responseData.data.id + Date.now();
               image.src = responseData.data.images.original.url;
               image.title = responseData.data.title.trim() ? responseData.data.title.trim() : 'random gif';
               commit('addImage', image);

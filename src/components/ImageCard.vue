@@ -2,13 +2,17 @@
   <div class="image-card__wrapper">
     <img 
     class="image-card__image"
-      v-bind:key="id + Date.now()"
+      v-bind:data-id="id"
       v-bind:src="src"
       v-bind:alt="title"
     >
     <div class="image-card__description">
       <p class="image-card__description-title"><strong>{{ title }}</strong></p>
-      <p class="image-card__description-timestamp">{{ timestamp }}</p>
+      <time 
+        v-bind:date="new Date(timestamp).toLocaleString()" 
+        class="image-card__description-timestamp">
+        {{ formatDate(timestamp) }}
+      </time>
     </div>
   </div>
 </template>
@@ -24,6 +28,18 @@ export default {
     src: String,
     id: {
       type: [String, Number]
+    }
+  },
+  methods: {
+    formatDate(timestamp) {
+      const date = new Date(timestamp);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const hours = date.getHours();
+      const minutes = date.getMinutes();
+      const seconds = date.getSeconds();
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
   }
 }

@@ -10,8 +10,7 @@
         <ImageCard 
           v-for="image in images" 
           v-bind:image="image"
-          v-bind:key="image.id + Math.random()"
-          
+          v-bind:key="image.id"
           v-bind:src="image.src"
           v-bind:title="image.title"
           v-bind:id="image.id"
