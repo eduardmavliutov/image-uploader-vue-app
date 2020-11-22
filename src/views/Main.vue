@@ -3,7 +3,12 @@
   <h1 class="section__title">Главная</h1>
   <main class="section__main">
     <div class="image-upload__container">
-      <img class="image-upload__preview">
+      <img 
+        v-if="!!lastUploadedImageUrl"
+        class="image-upload__preview"
+        v-bind:src="lastUploadedImageUrl"
+      >
+      <ImagePlaceHolder v-else/>
       <UploadButton
         @upload="uploadImageHandler"
       />
@@ -15,18 +20,22 @@
 
 <script>
 import UploadButton from '@/components/UploadButton';
-import { mapMutations } from 'vuex';
+import ImagePlaceHolder from '@/components/ImagePlaceHolder';
+import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Main',
   components: {
-    UploadButton
+    UploadButton,
+    ImagePlaceHolder
   },
+  computed: mapGetters(['lastUploadedImageUrl']),
   methods: {
-    ...mapMutations(['uploadImage']),
+    ...mapMutations(['uploadImage', 'setLastUploadedImageUrl']),
     uploadImageHandler(file) {
       const onImageLoad = () => {
         this.uploadImage(fileReader.result);
+        this.setLastUploadedImageUrl(fileReader.result);
         fileReader.removeEventListener('load', onImageLoad);
       };
       const fileReader = new FileReader();
@@ -40,19 +49,18 @@ export default {
 <style scoped>
 .image-upload__container {
   width: 50%;
+  max-height: 100%;
+  position: relative;
 }
 
 .image-upload__preview {
-  top: 212px;
-  left: 255px;
-  width: 453px;
-  height: 252px;
-  background: transparent linear-gradient(180deg, #D29EF8 0%, #00CED6 100%) 0% 0% no-repeat padding-box;
-  opacity: 1;
+  background: transparent linear-gradient(180deg, #D29EF8 0%, #00CED6 100%) 0% 0% repeat padding-box;
   flex-grow: 2;
-  display: block;
-  width: 100%;
+  max-width: 100%;
+  max-height: 30rem;
   margin-bottom: 40px;
+  object-fit: contain;
+  text-align: center;
 }
 </style>
 

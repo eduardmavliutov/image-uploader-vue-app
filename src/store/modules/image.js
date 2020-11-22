@@ -32,9 +32,6 @@ export default {
     addImage(state, image) {
       state.images.push(image)
     },
-    updateImages(state, images) {
-      state.images = images;
-    },
     setLoading(state, loading) {
       state.loading = loading;
     },
@@ -49,13 +46,16 @@ export default {
     },
     setInitialLoadingCompleted(state) {
       state.initialLoadingCompleted = true;
+    },
+    setLastUploadedImageUrl(state, src) {
+      state.lastUploadedImageUrl = src;
     }
   },
   state: {
     images: [],
     loading: false,
     initialLoadingCompleted: false,
-    lastDownloadedImage: ''
+    lastUploadedImageUrl: ''
   },
   getters: {
     images(state) {
@@ -64,8 +64,8 @@ export default {
     loading(state) {
       return state.loading;
     },
-    lastDownloadedImage(state) {
-      return state.lastDownloadedImage;
+    lastUploadedImageUrl(state) {
+      return state.lastUploadedImageUrl;
     }
   }
 }
