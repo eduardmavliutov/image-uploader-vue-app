@@ -8,10 +8,11 @@
   </label>
   <input 
     type="file"
-    name="files[]"
     id="image-upload__input"
+    ref="file"
     class="image-upload__input"
     accept=".jpg, .jpeg, .png"
+    @change="$emit('upload', $refs.file.files[0])"
   >
 </div>
 </template>

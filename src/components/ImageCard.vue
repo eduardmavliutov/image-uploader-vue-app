@@ -22,7 +22,9 @@ export default {
       type: [String, Number]
     },
     src: String,
-    id: String,
+    id: {
+      type: [String, Number]
+    }
   }
 }
 </script>

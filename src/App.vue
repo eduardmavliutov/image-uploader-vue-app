@@ -58,5 +58,6 @@ export default {
   flex-flow: row nowrap;
   align-items: flex-start;
   flex-grow: 2;
+  margin-right: 30px;
 }
 </style>

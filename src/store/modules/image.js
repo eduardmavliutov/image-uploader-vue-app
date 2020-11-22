@@ -5,6 +5,7 @@ export default {
         const IMAGES_COUNT = 15;
         const queries = new Array(IMAGES_COUNT);
         const images = [];
+        commit('setLoading', true);
         for(let i = 0; i < queries.length; i++) {
           queries[i] = fetch(
             'https://api.giphy.com/v1/gifs/random?api_key=xgcnvYuqk4vP1WQQtWPz6F1A0B4WHHdA'
@@ -24,9 +25,9 @@ export default {
           .then(() => {
             commit('updateImages', images);
             commit('setLoading', false);
-          })
+          });
       }
-    }
+    },
   },
   mutations: {
     updateImages(state, images) {
@@ -34,11 +35,21 @@ export default {
     },
     setLoading(state, loading) {
       state.loading = loading;
+    },
+    uploadImage(state, file) {
+      const image = {
+        id: Date.now(),
+        timestamp: Date.now(),
+        src: file,
+        title: 'New Image ' + Date.now()
+      }
+      state.images.unshift(image);
     }
   },
   state: {
     images: [],
-    loading: true
+    loading: false,
+    file: ''
   },
   getters: {
     images(state){

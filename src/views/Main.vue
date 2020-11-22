@@ -3,9 +3,10 @@
   <h1 class="section__title">Главная</h1>
   <main class="section__main">
     <div class="image-upload">
-      <div class="image-upload__preview">
-      </div>
-      <UploadButton/>
+      <img class="image-upload__preview">
+      <UploadButton
+        @upload="uploadImageHandler"
+      />
     </div>
   </main>
 </section>
@@ -13,11 +14,25 @@
 </template>
 
 <script>
-import UploadButton from '@/components/UploadButton'
+import UploadButton from '@/components/UploadButton';
+import { mapMutations } from 'vuex';
+
 export default {
   name: 'Main',
   components: {
     UploadButton
+  },
+  methods: {
+    ...mapMutations(['uploadImage']),
+    uploadImageHandler(file) {
+      const onImageLoad = () => {
+        this.uploadImage(fileReader.result);
+        fileReader.removeEventListener('load', onImageLoad);
+      };
+      const fileReader = new FileReader();
+      fileReader.addEventListener('load', onImageLoad);
+      fileReader.readAsDataURL(file);
+    }
   }
 }
 </script>
@@ -31,6 +46,8 @@ export default {
   background: transparent linear-gradient(180deg, #D29EF8 0%, #00CED6 100%) 0% 0% no-repeat padding-box;
   opacity: 1;
   flex-grow: 2;
+  display: block;
+  width: 100%;
 }
 </style>
 
