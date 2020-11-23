@@ -26,21 +26,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'ImageCard',
   props: {
     title: String,
-    timestamp: {
-      type: [String, Number]
-    },
+    timestamp: Number,
     src: String,
-    id: {
-      type: [String, Number]
-    }
+    id: String
   },
   methods: {
-    formatDate(timestamp) {
+    formatDate(timestamp:number): string {
       const date = new Date(timestamp);
       const year = date.getFullYear();
       const month = date.getMonth() + 1;

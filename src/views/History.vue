@@ -14,7 +14,7 @@
           v-bind:src="image.src"
           v-bind:title="image.title"
           v-bind:id="image.id"
-          v-bind:timestamp="Date.now()"
+          v-bind:timestamp="image.timestamp"
           @delete="deleteImage"
         />
       </div>
@@ -22,10 +22,10 @@
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { mapGetters, mapActions, mapMutations } from 'vuex';
-import Loader from '@/components/Loader';
-import ImageCard from '@/components/ImageCard';
+import Loader from './../components/Loader.vue';
+import ImageCard from './../components/ImageCard.vue';
 
 export default {
   name: 'History',
@@ -38,10 +38,11 @@ export default {
     ...mapActions(['fetchImages']),
     ...mapMutations(['deleteImage'])
   },
-  async mounted() {
-    this.fetchImages();
+  mounted():void {
+    this.$store.dispatch('fetchImages');
   }
 }
+
 </script>
 
 <style scoped>

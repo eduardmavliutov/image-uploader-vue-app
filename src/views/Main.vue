@@ -18,9 +18,9 @@
   
 </template>
 
-<script>
-import UploadButton from '@/components/UploadButton';
-import ImagePlaceHolder from '@/components/ImagePlaceHolder';
+<script lang="ts">
+import UploadButton from './../components/UploadButton.vue';
+import ImagePlaceHolder from './../components/ImagePlaceHolder.vue';
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {
@@ -32,7 +32,7 @@ export default {
   computed: mapGetters(['lastUploadedImageUrl']),
   methods: {
     ...mapMutations(['uploadImage', 'setLastUploadedImageUrl']),
-    uploadImageHandler(file) {
+    uploadImageHandler(file: Blob): void {
       const onImageLoad = () => {
         this.uploadImage(fileReader.result);
         this.setLastUploadedImageUrl(fileReader.result);

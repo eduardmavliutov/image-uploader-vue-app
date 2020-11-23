@@ -1,6 +1,5 @@
 <template>
   <div class="image-upload__image-placeholder">
-
   </div>
 </template>
 

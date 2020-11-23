@@ -5,8 +5,10 @@ import image from './modules/image';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   modules: {
     image
   }
-})
+}) 
+
+export default store
