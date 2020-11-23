@@ -15,6 +15,7 @@
           v-bind:title="image.title"
           v-bind:id="image.id"
           v-bind:timestamp="Date.now()"
+          @delete="deleteImage"
         />
       </div>
     </main>
@@ -22,7 +23,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import Loader from '@/components/Loader';
 import ImageCard from '@/components/ImageCard';
 
@@ -33,7 +34,10 @@ export default {
     ImageCard
   },
   computed: mapGetters(['images', 'loading']),
-  methods: mapActions(['fetchImages']),
+  methods: {
+    ...mapActions(['fetchImages']),
+    ...mapMutations(['deleteImage'])
+  },
   async mounted() {
     this.fetchImages();
   }

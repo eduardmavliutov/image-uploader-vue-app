@@ -32,6 +32,9 @@ export default {
     addImage(state, image) {
       state.images.push(image)
     },
+    deleteImage(state, id) {
+      state.images = state.images.filter((image) => image.id !== id);
+    },
     setLoading(state, loading) {
       state.loading = loading;
     },

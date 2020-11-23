@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="image-upload__button-container">
   <label 
     class="image-upload__label"
     for="image-upload__input"
@@ -37,6 +37,17 @@
   letter-spacing: 0px;
   color: #FFFFFF;
   opacity: 1;
+  transition: all .2s ease-in;
+}
+
+.image-upload__label:hover {
+  box-shadow: 0 0 5px 2px #00CED6;
+}
+
+.image-upload__label:active {
+  box-shadow: 0 0 5px 2px #00CED6,
+              inset 0 0 5px 2px #555550;
+  color: gray;
 }
 
 .image-upload__text {
