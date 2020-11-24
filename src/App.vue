@@ -31,9 +31,9 @@ export default {
 }
 
 .border__wrapper {
-  border: 1px solid #707070;
   margin-left: 48px;
   margin-right: 48px;
+  box-shadow: 0 0 5px 5px lightgray;
 }
 
 .section__wrapper {
@@ -45,6 +45,7 @@ export default {
   margin-bottom: 29px;
   flex-grow: 1;
   position: relative;
+  background-color: rgba(199, 224, 253, 0.89);
 }
 
 .section__title {
@@ -52,6 +53,8 @@ export default {
   padding: 0;
   margin: 0 30px 0;
   position: absolute;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .section__main {

@@ -36,14 +36,14 @@ export default {
     id: String
   },
   methods: {
-    formatDate(timestamp:number): string {
+    formatDate(timestamp: number): string {
       const date = new Date(timestamp);
       const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
-      const seconds = date.getSeconds();
+      const month = date.getMonth() + 1 > 10 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
+      const day = date.getDate() > 10 ?  date.getDate() : `0${date.getDate()}`;
+      const hours = date.getHours() > 10 ? date.getHours() : `0${date.getHours()}`;
+      const minutes = date.getMinutes() > 10 ? date.getMinutes() : `0${date.getMinutes()}`;
+      const seconds = date.getSeconds() > 10 ? date.getSeconds() : `0${date.getSeconds()}`;
       return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
   }
@@ -57,6 +57,10 @@ export default {
   flex-flow: row nowrap;
   align-items: flex-start;
   margin-bottom: 30px;
+  box-shadow: 0 0 5px 5px lightgray;
+  background: #ffffff;
+  padding: 1rem;
+  width: 100%;
 }
 
 .image-card__image-container {
@@ -74,8 +78,6 @@ export default {
   position: absolute;
   top: 75%;
   right: 0;
-  width: fit-content;
-  height: fit-content;
 }
 
 .image-card__delete-image-button {

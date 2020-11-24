@@ -11,5 +11,7 @@
   margin-bottom: 40px;
   flex-grow: 2;
   display: block;
+  border: 1px solid lightgray;
+  box-shadow: 0 0 5px 1px lightgray;
 }
 </style>

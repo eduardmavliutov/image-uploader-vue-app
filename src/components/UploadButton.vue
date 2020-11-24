@@ -1,20 +1,20 @@
 <template>
-<div class="image-upload__button-container">
-  <label 
-    class="image-upload__label"
-    for="image-upload__input"
-  >
-  <span class="image-upload__text">Загрузить</span>
-  </label>
-  <input 
-    type="file"
-    id="image-upload__input"
-    ref="file"
-    class="image-upload__input"
-    accept=".jpg, .jpeg, .png"
-    @change="$emit('upload', $refs.file.files[0])"
-  >
-</div>
+  <div class="image-upload__button-container">
+    <label 
+      class="image-upload__label"
+      for="image-upload__input"
+    >
+    <span class="image-upload__text">Загрузить</span>
+    </label>
+    <input 
+      type="file"
+      id="image-upload__input"
+      ref="file"
+      class="image-upload__input"
+      accept=".jpg, .jpeg, .png"
+      @change="$emit('upload', $refs.file.files[0])"
+    >
+  </div>
 </template>
 
 <style scoped>
@@ -37,7 +37,7 @@
   letter-spacing: 0px;
   color: #FFFFFF;
   opacity: 1;
-  transition: all .2s ease-in;
+  transition: all .3s ease-in;
 }
 
 .image-upload__label:hover {

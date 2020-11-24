@@ -11,7 +11,7 @@ const state: ImageState = {
 const actions: ActionTree<ImageState, RootState> = {
   async fetchImages({commit, state}) {
     if(!state.initialLoadingCompleted) {
-      const IMAGES_COUNT = 15;
+      const IMAGES_COUNT = 4;
       const queries = new Array(IMAGES_COUNT);
       commit('setLoading', true);
       for(let i = 0; i < queries.length; i++) {
@@ -53,7 +53,7 @@ const getters: GetterTree<ImageState, RootState> =  {
 }
 
 const mutations: MutationTree<ImageState> = {
-  addImage(state, image: ImageData):void {
+  addImage(state, image: ImageData): void {
     state.images.push(image);
   },
   deleteImage(state, id: string): void {
