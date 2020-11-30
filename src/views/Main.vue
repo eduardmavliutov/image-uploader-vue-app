@@ -19,29 +19,40 @@
 </template>
 
 <script lang="ts">
+import Component from 'vue-class-component';
+import Vue from 'vue';
 import UploadButton from './../components/UploadButton.vue';
 import ImagePlaceHolder from './../components/ImagePlaceHolder.vue';
 import { mapGetters, mapMutations } from 'vuex';
 
-export default {
-  name: 'Main',
+@Component({
   components: {
     UploadButton,
     ImagePlaceHolder
   },
+
   computed: mapGetters(['lastUploadedImageUrl']),
+  
   methods: {
-    ...mapMutations(['uploadImage', 'setLastUploadedImageUrl']),
-    uploadImageHandler(file: Blob): void {
-      const onImageLoad = () => {
-        this.uploadImage(fileReader.result);
-        this.setLastUploadedImageUrl(fileReader.result);
-        fileReader.removeEventListener('load', onImageLoad);
-      };
-      const fileReader = new FileReader();
-      fileReader.addEventListener('load', onImageLoad);
-      fileReader.readAsDataURL(file);
-    }
+    ...mapMutations([
+      'uploadImage',
+      'setLastUploadedImageUrl'
+    ]),
+  }
+})
+export default class Main extends Vue {
+  uploadImage!: (url: string) => void;
+  setLastUploadedImageUrl!: (src: string) => void
+  
+  uploadImageHandler(file: Blob): void {
+    const onImageLoad = () => {
+      this.uploadImage(String(fileReader.result));
+      this.setLastUploadedImageUrl(String(fileReader.result));
+      fileReader.removeEventListener('load', onImageLoad);
+    };
+    const fileReader = new FileReader();
+    fileReader.addEventListener('load', onImageLoad);
+    fileReader.readAsDataURL(file);
   }
 }
 </script>

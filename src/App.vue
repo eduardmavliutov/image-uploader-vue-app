@@ -6,14 +6,16 @@
 </template>
 
 <script lang="ts">
+import Component from 'vue-class-component';
+import Vue from 'vue';
 import NavBar from './components/NavBar.vue';
 
-export default {
-  name: 'App',
+@Component({
   components: {
     NavBar
   }
-}
+})
+export default class App extends Vue {}
 </script>
 
 <style>

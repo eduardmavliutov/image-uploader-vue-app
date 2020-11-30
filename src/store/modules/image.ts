@@ -27,7 +27,7 @@ const actions: ActionTree<ImageState, RootState> = {
               id: responseData.data.id + Date.now(),
               src: responseData.data.images.original.url,
               title: responseData.data.title.trim() ? responseData.data.title.trim() : 'random gif',
-              timestamp: Date.now()
+              timestamp: responseData.data['import_datetime']
             };
             commit('addImage', image);
           })
@@ -63,11 +63,12 @@ const mutations: MutationTree<ImageState> = {
     state.loading = loading;
   },
   uploadImage(state, url: string): void {
+    const date = new Date();
     const image: ImageData = {
-      id: String(Date.now()),
-      timestamp: Date.now(),
+      id: String(date.getMilliseconds()),
+      timestamp: `${date.toLocaleDateString().split('.').reverse().join('-')} ${date.toLocaleTimeString()}`,
       src: url,
-      title: 'New Image ' + Date.now()
+      title: `New Image ${date.getMilliseconds()}`
     }
     state.images.unshift(image);
   },

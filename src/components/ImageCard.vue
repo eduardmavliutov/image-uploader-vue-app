@@ -3,9 +3,9 @@
     <div class="image-card__image-container">
       <img 
         class="image-card__image"
-        v-bind:data-id="id"
-        v-bind:src="src"
-        v-bind:alt="title"
+        :data-id="id"
+        :src="src"
+        :alt="title"
       >
       <div class="image-card__delete-image-button-container">
         <img 
@@ -18,9 +18,9 @@
     <div class="image-card__description">
       <p class="image-card__description-title"><strong>{{ title }}</strong></p>
       <time 
-        v-bind:date="new Date(timestamp).toLocaleString()" 
+        :date="timestamp" 
         class="image-card__description-timestamp"
-      >{{ formatDate(timestamp) }}
+      >{{ timestamp }}
       </time>
     </div>
   </div>
@@ -31,22 +31,10 @@ export default {
   name: 'ImageCard',
   props: {
     title: String,
-    timestamp: Number,
+    timestamp: String,
     src: String,
     id: String
   },
-  methods: {
-    formatDate(timestamp: number): string {
-      const date = new Date(timestamp);
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1 > 10 ? date.getMonth() + 1 : `0${date.getMonth() + 1}`;
-      const day = date.getDate() > 10 ?  date.getDate() : `0${date.getDate()}`;
-      const hours = date.getHours() > 10 ? date.getHours() : `0${date.getHours()}`;
-      const minutes = date.getMinutes() > 10 ? date.getMinutes() : `0${date.getMinutes()}`;
-      const seconds = date.getSeconds() > 10 ? date.getSeconds() : `0${date.getSeconds()}`;
-      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    }
-  }
 }
 </script>
 

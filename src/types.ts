@@ -5,17 +5,17 @@ export interface RootState {
 }
 
 export interface ImageData {
-  id: string,
-  src: string
-  title: string,
-  timestamp: number
+  id: string;
+  src: string;
+  title: string;
+  timestamp: string;
 }
 
 export interface ImageState {
-  images: ImageData[],
-  loading: boolean,
-  initialLoadingCompleted: boolean,
-  lastUploadedImageUrl: string
+  images: ImageData[];
+  loading: boolean;
+  initialLoadingCompleted: boolean;
+  lastUploadedImageUrl: string;
 }
 
 export interface Module<S, R> {

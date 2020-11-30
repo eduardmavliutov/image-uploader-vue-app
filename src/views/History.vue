@@ -14,12 +14,12 @@
         <ImageCard 
           v-else
           v-for="image in images" 
-          v-bind:image="image"
-          v-bind:key="image.id"
-          v-bind:src="image.src"
-          v-bind:title="image.title"
-          v-bind:id="image.id"
-          v-bind:timestamp="image.timestamp"
+          :key="image.id"
+          :image="image"
+          :src="image.src"
+          :title="image.title"
+          :id="image.id"
+          :timestamp="image.timestamp"
           @delete="deleteImage"
         />
       </div>
@@ -28,23 +28,34 @@
 </template>
 
 <script lang="ts">
+import Component from 'vue-class-component';
+import Vue from 'vue';
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 import Loader from './../components/Loader.vue';
 import ImageCard from './../components/ImageCard.vue';
 import BackButton from './../components/BackButton.vue';
 
-export default {
-  name: 'History',
+@Component({
+  computed: mapGetters([
+    'images',
+    'loading'
+  ]),
+
+  methods: {
+    ...mapActions(['fetchImages']),
+    ...mapMutations(['deleteImage'])
+  },
+
   components: {
     Loader,
     ImageCard,
     BackButton
   },
-  computed: mapGetters(['images', 'loading']),
-  methods: {
-    ...mapActions(['fetchImages']),
-    ...mapMutations(['deleteImage'])
-  },
+})
+export default class History extends Vue {
+  images!: ImageData[];
+  fetchImages!: () => Promise<void>
+  
   mounted(): void {
     this.fetchImages();
   }
